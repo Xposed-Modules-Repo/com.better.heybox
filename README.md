@@ -3,9 +3,12 @@
 ![BetterHeybox](https://socialify.git.ci/Mrmiaomrzh/BetterHeybox/image?font=Source+Code+Pro&forks=1&issues=1&language=1&name=1&pattern=Floating+Cogs&pulls=1&stargazers=1&theme=Auto)
 
 增强小黑盒（Heybox）的 LSPosed 模块。
-
-# 免责声明
-本应用与清枫（北京）科技有限公司无关，仅学习研究小黑盒APP部分功能原理，请在下载后24h内删除
+> [!CAUTION]
+> **免责声明**
+> - 本应用与清枫(北京)科技有限公司**无任何关联**，亦未经其授权或认可  
+> - 本项目仅用于**学习与研究**小黑盒 APP 的部分技术原理，**严禁**用于任何商业或非法用途  
+> - 请在下载后 **24 小时内**删除本应用及相关文件  
+> - **禁止**在 **小黑盒 / HeyBox** 平台内发布、讨论或传播本模块的内容，违者后果自负  
 
 ## Note
 本应用基于 [小黑盒 1.3.393](https://github.com/Mrmiaomrzh/BetterHeybox/releases/download/v0.2.0/heybox_1.3.393.apk) 完成，低于此版本出现的问题不会进行处理
