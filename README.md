@@ -8,7 +8,7 @@
 本应用与清枫（北京）科技有限公司无关，仅学习研究小黑盒APP部分功能原理，请在下载后24h内删除
 
 ## Note
-本应用基于 [小黑盒 1.3.393](https://github.com/Mrmiaomrzh/BetterHeybox/releases/download/v0.2.0/heybox_1.3.393.apk) 完成，低于此版本出现的问题不会进行处理
+本应用基于 [小黑盒 1.3.393](https://github.com/Mrmiaomrzh/BetterHeybox/releases/download/v0.2.0/heybox_1.3.393.apk) 和[小黑盒 1.3.394(1127)](https://github.com/Mrmiaomrzh/HeyboxAPK/releases/download/release-v1.3.394/Release-1.3.394.1127.-20260829.apk)完成，低于此版本出现的问题不会进行处理
 
 ## 主仓库
 完整源码、技术栈、工程结构、构建与使用说明见主仓库：
@@ -30,7 +30,19 @@
 
 ### 界面增强
 
-- **底部导航栏优化**（需重启小黑盒生效）：隐藏底栏tab项
+- **底部导航栏优化**（需重启小黑盒生效）：隐藏底栏 tab 项；
+  隐藏后剩余 tab 自动等分填满整条，当前选中的 tab 被隐藏时自动切换到第一个可见 tab
+- **液态玻璃底栏**（需重启小黑盒生效，Android 13+ 为玻璃效果）：
+  底部导航栏渲染为实时折射/色散的「液态玻璃」效果，带玻璃水滴选中动画、沉浸式小白条，
+  标签/图标颜色随背景亮度自适应反色；**长按首页标题栏右上角图标**或
+  设置页**「通用设置」行**可打开顶部调节面板，实时调节深/浅底色、不透明度、高度、
+  距底部偏移、宽度自适应（选中项加长）等；与底栏隐藏联动，隐藏 tab 后玻璃条同步收缩；
+  Android 12 及以下自动回退毛玻璃效果
+- **液态玻璃实现选择**：与独立的「小黑盒液态玻璃」模块共存时，首次打开小黑盒
+  自动弹出选择，可让玻璃效果由该模块提供——本模块的玻璃底栏与长按入口同步让位，
+  避免两条玻璃底栏叠加；选择后仍可在设置面板「液态玻璃提供方」行切换
+- **屏蔽双列信息流**（实验性，仅 1.3.394）：将首页推荐 / 话题 / 百科的
+  双列瀑布流恢复为单列，封面宽高比同步修正回旧单列卡样式
 
 ### 帖子增强
 
@@ -40,6 +52,27 @@
 - **图片系统分享**：图片查看器中长按图片，在原有分享面板追加「系统分享」动作，
   下载当前图片后**优先保存到系统相册**（可被相册真正查看、可被任意 App 分享），
   自动识别 jpg/png/gif/webp/bmp 真实格式并修正 MIME；可通过「系统分享图片」开关关闭
+- **净化分享链接**：复制链接 / 分享到 QQ、微信等渠道时，自动去掉小黑盒链接上的追踪参数；默认开启，可通过「净化分享链接」开关关闭  
+
+### 视频下载
+
+- **下载入口**：视频帖右上角圆形 Monet 渐变悬浮按钮
+- **底部下载面板**：
+  - 准备：标题 / 来源 / 预计大小 → 「开始下载」
+  - 下载中：实时百分比、已下载/总大小、当前速度 → 「暂停下载」「取消下载」
+  - 暂停：「继续下载」
+  - 完成：保存路径 → 「播放」「分享」「完成」
+  - 失败：错误原因 → 「重新下载」
+- **后台下载**：面板可随时关闭，下载继续进行；悬浮按钮进度环持续反馈
+- **全类型视频**：正文 / 信息流 / 故事 / 游戏卡片均可；mp4 直链与 HLS（m3u8）分片流均支持
+- **断点续传**  
+- **自动转封装 MP4**：HLS 合并后自动无损转封装为 MP4
+- **智能命名**：文件名优先使用**帖子标题**，HLS 通用名（segs/index）自动回退时间戳；
+  重名自动加 `(n)` 后缀，绝不覆盖
+- **保存位置**：默认相册 `Movies/BetterHeybox`；设置「保存位置」可调起**系统文件选择器**
+  选择任意文件夹，完成通知显示实际保存路径
+- **通知栏反馈**：进度（含暂停/取消）、完成（播放/分享/删除 + 保存路径）、失败（重试/取消）
+- **系统分享**：完成后一键分享视频文件  
 
 ### 每日任务
 
@@ -68,6 +101,8 @@
 - **伪装通知权限**：让小黑盒认为通知权限已开启，获得**签到加成**  
 - **屏蔽更新**：提供可选开关，屏蔽小黑盒更新   
 - **记录日志**：提供「记录日志」开关，开启后自动把模块运行日志写入文件
+- **网页 DevTools**：为小黑盒内置 WebView 开启 Chrome 远程调试，电脑 `chrome://inspect` 可调试内置网页
+- **打开网页**：输入任意 http/https 地址，用小黑盒内置浏览器打开
 
 ## 技术特点
 
@@ -80,9 +115,22 @@
   JSON 格式带版本标识，模块设置页与内嵌面板双入口互通
 
 ## 致谢
-- [LSPosed](https://github.com/LSPosed/LSPosed)
-- [Libxposed api](https://github.com/libxposed/api) — Apache-2.0，现代 Xposed 模块 API
 
-### 部分功能灵感来源
-- [假装开启小黑盒通知权限](https://github.com/Xposed-Modules-Repo/com.chrxw.justenablednotification)
-- [SoulFrog](https://github.com/xmnh/SoulFrog)
+本项目在开发和实现过程中，参考或使用了以下开源项目和库，在此表示衷心感谢：
+
+- [LSPosed](https://github.com/LSPosed/LSPosed) — Xposed 框架基础
+- [Libxposed api](https://github.com/libxposed/api) — Apache-2.0，现代 Xposed 模块 API
+- [Dexkit](https://github.com/LuckyPray/DexKit) — Apache-2.0，字节码特征分析
+- [HeyBox-LiquidGlass](https://github.com/sjtt2/HeyBox-LiquidGlass) — 液态玻璃底栏移植来源
+- [QEA0-Liquid-Glass-Android](https://github.com/QWEA0/Liquid-Glass-Android) — MIT，液态玻璃渲染器
+- [AndroidLiquidGlassView](https://github.com/QmDeve/AndroidLiquidGlassView) — MIT，QmDeve，AGSL shader 与 GPU 渲染路径
+
+## 灵感来源
+
+本项目的部分功能设计和实现思路，受到了以下项目的启发，特别感谢：
+
+1. **[SoulFrog](https://github.com/xmnh/SoulFrog)** — **自动化分享**核心实现思路的主要灵感来源，作者 [@xmnh](https://github.com/xmnh)  
+2. **[假装开启小黑盒通知权限](https://github.com/Xposed-Modules-Repo/com.chrxw.justenablednotification)** — 提供了功能上的启发  
+3. **[小黑盒液态玻璃](https://github.com/sjtt2/HeyBox-LiquidGlass)** — 液态玻璃底栏移植来源
+
+如果涉及任何代码使用不当或版权问题，请随时联系
